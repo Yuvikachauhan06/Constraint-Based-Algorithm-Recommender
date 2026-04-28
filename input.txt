@@ -1,0 +1,2 @@
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9

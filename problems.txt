@@ -1,0 +1,67 @@
+DP|count ways number ways dp state transition memoization tabulation optimize recurrence
+DP_KNAPSACK|knapsack weight capacity maximize profit value subset sum partition equal subset
+DP_LIS|subsequence increasing longest strictly increasing lis patience sorting
+DP_GRID|grid matrix path right down obstacle unique paths min path sum
+DP_INTERVAL|interval partition merge cost matrix chain burst balloon optimal partition
+DP_STRING|edit distance levenshtein lcs longest common subsequence substring palindrome dp string
+DP_PALINDROME|palindrome substring subsequence longest palindromic dp expand center
+DP_BITMASK|bitmask subset mask dp traveling salesman tsp subsets dp mask
+DP_TREE|tree dp subtree rerooting dp on tree
+DP_DIGIT|digit dp count numbers with constraints digits bound
+
+GREEDY|minimize cost maximize profit choose optimal locally greedy exchange argument
+GREEDY_INTERVAL|interval scheduling non overlapping select maximum activities meeting rooms
+GREEDY_HUFFMAN|huffman coding compression optimal merge pattern ropes merge cost
+GREEDY_COINS|coin change minimum coins canonical greedy coins
+
+BACKTRACKING|generate all permutation combination subset power set recursion explore all
+NQUEEN|n queen chess board place queen attack safe backtracking columns diagonals
+SUDOKU|sudoku fill grid constraints 9x9 backtracking
+COMBINATION_SUM|target sum combinations unlimited choose numbers backtracking
+PERMUTATIONS|all permutations distinct duplicate handling swap recursion
+SUBSETS|generate subsets power set include exclude
+
+BFS|bfs level order shortest unweighted queue
+DFS|dfs depth recursion stack visited
+SHORTEST_PATH|shortest path distance weighted unweighted source
+DIJKSTRA|dijkstra priority queue weighted non negative edges
+BELLMAN_FORD|bellman ford negative edges cycle detection
+FLOYD_WARSHALL|floyd warshall all pairs shortest path
+TOPO_SORT|topological ordering dag dependency kahn dfs topo
+CYCLE_DETECTION|cycle detect directed undirected graph
+BIPARTITE|bipartite graph coloring two color
+UNION_FIND|disjoint set union dsu find union path compression rank
+MST|minimum spanning tree kruskal prim
+FLOW|max flow min cut ford fulkerson edmond karp dinic
+
+SEGMENT_TREE|range query update segment tree lazy propagation
+FENWICK_TREE|fenwick tree binary indexed tree bit
+PREFIX_SUM|prefix cumulative sum range query
+MO_ALGORITHM|mo algorithm offline sqrt decomposition
+HEAP|priority queue kth largest smallest median stream
+
+SLIDING_WINDOW|subarray substring window two pointer variable fixed size
+TWO_POINTER|two pointer sorted array pair sum target opposite ends
+PARTITION|partition array pivot quickselect dutch flag
+KADANE|maximum subarray sum kadane
+
+BINARY_SEARCH|binary search sorted lower bound upper bound answer monotonic
+TERNARY_SEARCH|unimodal function ternary search
+SORTING|sort arrange ascending descending stable unstable merge quick heap sort
+COUNTING_RADIX|counting sort radix small range digits
+
+STRING|string processing pattern match prefix suffix substring
+KMP|kmp prefix function lps pattern matching
+RABIN_KARP|rolling hash substring match probabilistic
+TRIE|trie prefix tree dictionary autocomplete
+SUFFIX_ARRAY|suffix array lcp string sorting suffix
+
+GAME_THEORY|player turn win lose optimal play strategy minimax impartial game
+MINIMAX|minimax alpha beta pruning game tree optimal decision
+NIM|nim piles stones coins xor grundy mex impartial
+GRUNDY|grundy numbers mex game states transitions
+
+FFT|fft fast fourier transform convolution polynomial multiplication
+CHINESE_REMAINDER|crt chinese remainder theorem modulus congruences
+
+MATRIX|matrix grid 2d row column traversal spiral rotate

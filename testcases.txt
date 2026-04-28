@@ -1,0 +1,87 @@
+Problem: Find longest increasing subsequence of array
+Constraints: n <= 100000, array values between -1e9 and 1e9
+Expected: DP_LIS
+
+---
+
+Problem: Generate all permutations of given numbers
+Constraints: n <= 10, distinct integers
+Expected: BACKTRACKING
+
+---
+
+Problem: Solve N queens problem
+Constraints: n <= 12, board size n x n
+Expected: NQUEEN
+
+---
+
+Problem: Find shortest path in weighted graph with non-negative edges
+Constraints: n <= 100000, m <= 200000, weights >= 0
+Expected: DIJKSTRA
+
+---
+
+Problem: Find shortest path with possible negative edges
+Constraints: n <= 1000, m <= 5000, no negative cycles
+Expected: BELLMAN_FORD
+
+---
+
+Problem: Range sum query with point updates
+Constraints: n <= 100000, q <= 100000
+Expected: SEGMENT_TREE
+
+---
+
+Problem: Check if graph is bipartite
+Constraints: n <= 100000, m <= 200000
+Expected: BIPARTITE
+
+---
+
+Problem: Two players pick stones optimally, find winner
+Constraints: n <= 1000, stones per pile <= 100
+Expected: GAME_THEORY
+
+---
+
+Problem: Find pattern P in text T
+Constraints: |T| <= 100000, |P| <= 10000
+Expected: KMP
+
+---
+
+Problem: Merge overlapping intervals
+Constraints: n <= 100000, intervals in [0, 1e9]
+Expected: INTERVAL
+
+---
+
+Problem: Count number of ways to reach nth step (can take 1 or 2 steps)
+Constraints: n <= 100000
+Expected: DP
+
+---
+
+Problem: Find maximum subarray sum
+Constraints: n <= 200000, values can be negative
+Expected: KADANE
+
+---
+
+Problem: Check if graph has a cycle
+Constraints: n <= 100000, directed graph
+Expected: CYCLE_DETECTION
+
+---
+
+Problem: Minimum spanning tree in weighted graph
+Constraints: n <= 100000, m <= 200000
+Expected: MST
+
+---
+
+Problem: Polynomial multiplication of two degree-n polynomials
+Constraints: n <= 100000
+Expected: FFT

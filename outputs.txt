@@ -1,0 +1,85 @@
+
+Problem:  Given a weighted graph, find shortest path from source to all nodes
+Result: DIJKSTRA
+----
+Problem:  Given a weighted graph, find shortest path from source to all nodes
+Result: DIJKSTRA
+----
+========================================
+Problem: Given a weighted graph, find shortest path from source to all nodes
+Constraints: 1 <= n <= 100000, 1 <= m <= 200000, edge weights >= 0
+Recommended: DIJKSTRA
+Score: 47
+========================================
+Problem: Given a weighted graph, find shortest path from source to all nodes
+Result: DIJKSTRA
+----
+========================================
+Problem: Given a weighted graph, find shortest path from source to all nodes
+Constraints: 1 <= n <= 100000, 1 <= m <= 200000, edge weights >= 0
+Recommended: DIJKSTRA
+Score: 47
+========================================
+========================================
+Problem: You are given an array with unique elements of stalls[], which denote the positions of stalls. You are also given an integer k which denotes the number of aggressive cows. The task is to assign stalls to k cows such that the minimum distance between any two of them is the maximum possible.
+Constraints: 1 <= n <= 100000, 1 <= m <= 200000, edge weights >= 0
+Recommended: GAME_THEORY
+Score: 35
+========================================
+========================================
+Problem: You are given an array with unique elements of stalls[], which denote the positions of stalls. You are also given an integer k which denotes the number of aggressive cows. The task is to assign stalls to k cows such that the minimum distance between any two of them is the maximum possible.
+Constraints: 1 <= n <= 100000, 1 <= m <= 200000, edge weights >= 0
+Recommended: BINARY_SEARCH
+Score: 85
+========================================
+========================================
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
+Recommended: DP_LIS
+Score: 43
+========================================
+========================================
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
+Recommended: DP_LIS
+Score: 43
+========================================
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Result: DP_LIS
+----
+========================================
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
+Recommended: DP_LIS
+Score: 43
+========================================
+========================================
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
+Recommended: DP_LIS
+Score: 43
+========================================
+========================================
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
+Recommended: DP_LIS
+Score: 43
+========================================
+========================================
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
+Recommended: DP_LIS
+Score: 43
+========================================
+========================================
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
+Recommended: DP_LIS
+Score: 43
+========================================
+========================================
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
+Recommended: DP_LIS
+Score: 43
+========================================
