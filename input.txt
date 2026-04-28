@@ -1,2 +1,10 @@
 Problem: Find the length of the longest increasing subsequence of an array of integers
 Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
+Problem: Generate all permutations of array
+Constraints: n <= 100000
+Problem: Find maximum subarray sum
+Constraints: n <= 100000
+Problem: Find shortest path in graph with negative weights
+Constraints: n <= 2000
+Problem: Find shortest path between all pairs of nodes
+Constraints: n <= 2000

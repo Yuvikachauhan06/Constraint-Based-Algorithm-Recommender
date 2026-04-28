@@ -8,6 +8,7 @@ struct Candidate {
     string spaceComplexity;
     vector<string> reasons;
     vector<string> warnings;
+    bool rejected = false;  
 };
 
 struct AnalysisResult {
@@ -18,6 +19,8 @@ struct AnalysisResult {
     vector<Candidate> candidates;
     Candidate best;
     vector<string> reasoningTrace;
+    vector<Candidate> rejectedCandidates;
+    int confidence;   
 };
 
 class AlgorithmAdvisor {
@@ -26,6 +29,9 @@ private:
     unordered_map<string, pair<string, string>> algorithmComplexity;
 
     void initComplexityMap() {
+        algorithmComplexity["SLIDING_WINDOW"] = {"O(N)", "O(1)"};
+        algorithmComplexity["MONOTONIC_STACK"] = {"O(N)", "O(N)"};
+        algorithmComplexity["HEAP"] = {"O(N log K)", "O(K)"};
         algorithmComplexity["DIJKSTRA"] = {"O(E log V)", "O(V + E)"};
         algorithmComplexity["BELLMAN_FORD"] = {"O(V * E)", "O(V)"};
         algorithmComplexity["BFS"] = {"O(V + E)", "O(V)"};
@@ -57,6 +63,8 @@ private:
         algorithmComplexity["BINARY_SEARCH"] = {"O(log N)", "O(1)"};
         algorithmComplexity["KADANE"] = {"O(N)", "O(1)"};
         algorithmComplexity["CYCLE_DETECTION"] = {"O(V + E)", "O(V)"};
+        algorithmComplexity["PERMUTATIONS"] = {"O(N!)", "O(N)"};
+        algorithmComplexity["SUBSETS"] = {"O(2^N)", "O(N)"};
     }
 
     int extractN(const string& s) {
@@ -136,7 +144,7 @@ public:
 
         unordered_map<string, int> scores;
         unordered_map<string, vector<string>> reasons;
-
+        
         // -------- GRAPH ALGORITHMS --------
         if(norm.find("shortest path") != string::npos || norm.find("shortest") != string::npos) {
             scores["DIJKSTRA"] += 25;
@@ -162,7 +170,29 @@ public:
                 reasons["FLOYD_WARSHALL"].push_back("All-pairs shortest path needed");
             }
         }
+        if(norm.find("subarray") != string::npos ||
+   norm.find("window") != string::npos) {
+    scores["SLIDING_WINDOW"] += 30;
+    reasons["SLIDING_WINDOW"].push_back("Subarray/window pattern detected");
+}
 
+if(norm.find("at most") != string::npos ||
+   norm.find("at least") != string::npos) {
+    scores["SLIDING_WINDOW"] += 15;
+    reasons["SLIDING_WINDOW"].push_back("Constraint-based window condition");
+}
+if(norm.find("next greater") != string::npos ||
+   norm.find("nearest greater") != string::npos ||
+   norm.find("nearest smaller") != string::npos) {
+    scores["MONOTONIC_STACK"] += 35;
+    reasons["MONOTONIC_STACK"].push_back("Next/Nearest element pattern");
+}
+if(norm.find("k largest") != string::npos ||
+   norm.find("k smallest") != string::npos ||
+   norm.find("top k") != string::npos) {
+    scores["HEAP"] += 35;
+    reasons["HEAP"].push_back("Top-K element selection");
+}
         // -------- DP/LIS --------
         if(norm.find("subsequence") != string::npos && norm.find("increasing") != string::npos) {
             scores["DP_LIS"] += 35;
@@ -328,39 +358,78 @@ public:
         // -------- BUILD CANDIDATE LIST --------
         vector<Candidate> candidates;
         for(auto& p : scores) {
-            if(p.second > 0) {
-                Candidate c;
-                c.name = p.first;
-                c.score = p.second;
-                c.reasons = reasons[p.first];
+        if(p.second > 0) {
+        Candidate c;
+        c.name = p.first;
+        c.score = p.second;
+        c.reasons = reasons[p.first];
 
-                if(algorithmComplexity.count(p.first)) {
-                    c.timeComplexity = algorithmComplexity[p.first].first;
-                    c.spaceComplexity = algorithmComplexity[p.first].second;
-                } else {
-                    c.timeComplexity = "Depends on implementation";
-                    c.spaceComplexity = "Depends on implementation";
-                }
-
-                if(p.first == "BACKTRACKING" && n > 20) {
-                    c.warnings.push_back("N > 20 may be too large for backtracking");
-                }
-                if(p.first == "FLOYD_WARSHALL" && n > 1000) {
-                    c.warnings.push_back("O(N^3) with N > 1000 will TLE");
-                }
-
-                candidates.push_back(c);
-            }
+        // complexity assignment 
+        if(algorithmComplexity.count(p.first)) {
+            c.timeComplexity = algorithmComplexity[p.first].first;
+            c.spaceComplexity = algorithmComplexity[p.first].second;
+        } else {
+            c.timeComplexity = "Depends on implementation";
+            c.spaceComplexity = "Depends on implementation";
         }
+    string t = c.timeComplexity;
 
-        sort(candidates.begin(), candidates.end(), [](const Candidate& a, const Candidate& b) {
-            return a.score > b.score;
-        });
+if(!c.rejected) {
 
-        if(candidates.size() > 5) candidates.resize(5);
+    // Exponential
+    if((t.find("!") != string::npos || t.find("2^") != string::npos) && n > 20) {
+        c.rejected = true;
+        c.warnings.push_back("Exponential time complexity not feasible");
+    }
 
-        result.candidates = candidates;
-        result.best = candidates.empty() ? Candidate{"UNKNOWN", 0, "?", "?", {}, {}} : candidates[0];
+    // Cubic
+    else if(t.find("^3") != string::npos && n > 1000) {
+        c.rejected = true;
+        c.warnings.push_back("Cubic time complexity too slow");
+    }
+
+    // Quadratic (optional but strong)
+    else if(t.find("^2") != string::npos && n > 50000) {
+        c.rejected = true;
+        c.warnings.push_back("Quadratic time complexity too slow");
+    }
+}
+
+
+        candidates.push_back(c);  // existing line
+    }
+}
+
+        vector<Candidate> valid, rejected;
+
+        for(auto &c : candidates) {
+        if(c.rejected) rejected.push_back(c);
+        else valid.push_back(c);
+    }
+// sort only valid
+sort(valid.begin(), valid.end(), [](const Candidate& a, const Candidate& b) {
+    return a.score > b.score;
+}); 
+// assign to result
+result.candidates = valid;
+result.rejectedCandidates = rejected;
+// best algorithm
+if(valid.empty() || valid[0].score < 5) {
+    result.best = Candidate{"UNKNOWN", 0, "?", "?", {}, {}};
+    result.confidence = 0;
+} else {
+    result.best = valid[0];
+}
+// keep top 5
+if(valid.size() > 5) valid.resize(5);
+int total = 0;
+for(auto &c : valid) total += c.score;
+
+if(total > 0)
+    result.confidence = (result.best.score * 100) / total;
+else
+    result.confidence = 0;
+
 
         // Build reasoning trace
         result.reasoningTrace.push_back("========== ANALYSIS TRACE ==========");
@@ -391,7 +460,7 @@ void displayResult(const AnalysisResult& result) {
     cout << "\n";
     cout << "===============================================================================\n";
     cout << "                         ALGORITHM ADVISOR v2.0                                \n";
-    cout << "                   (Rule-Based Expert System - No AI Used)                     \n";
+    cout << "                       (Rule-Based Expert System)                     \n";
     cout << "===============================================================================\n";
 
     cout << "\n[INPUT]\n";
@@ -406,14 +475,14 @@ void displayResult(const AnalysisResult& result) {
     }
     cout << "-------------------------------------------------------------------------------\n";
 
-    cout << "\n[REASONING TRACE]\n";
+    cout << "\nREASONING TRACE\n";
     cout << "-------------------------------------------------------------------------------\n";
     for(const string& line : result.reasoningTrace) {
         cout << line << "\n";
     }
     cout << "-------------------------------------------------------------------------------\n";
 
-    cout << "\n[CANDIDATE ALGORITHMS] (Ranked by score)\n";
+    cout << "\nCANDIDATE ALGORITHMS (Ranked by score)\n";
     cout << "-------------------------------------------------------------------------------\n";
     printf("%-20s | %-10s | %-25s | %-15s\n", "Algorithm", "Score", "Time Complexity", "Space Complexity");
     cout << "---------------------+------------+---------------------------+-----------------\n";
@@ -423,7 +492,7 @@ void displayResult(const AnalysisResult& result) {
     }
     cout << "-------------------------------------------------------------------------------\n";
 
-    cout << "\n[BEST RECOMMENDATION]\n";
+    cout << "\nBEST RECOMMENDATION\n";
     cout << "-------------------------------------------------------------------------------\n";
     cout << "Algorithm       : " << result.best.name << "\n";
     cout << "Time Complexity : " << result.best.timeComplexity << "\n";
@@ -435,14 +504,26 @@ void displayResult(const AnalysisResult& result) {
             cout << "  * " << w << "\n";
         }
     }
+    cout << "\nREJECTED ALGORITHMS\n";
+cout << "-------------------------------------------------------------------------------\n";
 
+if(result.rejectedCandidates.empty()) {
+    cout << "None\n";
+} else {
+    for(const auto &c : result.rejectedCandidates) {
+        cout << c.name << " rejected:\n";
+        for(const auto &w : c.warnings) {
+            cout << "  * " << w << "\n";
+        }
+    }
+}
     cout << "\nWHY THIS ALGORITHM?\n";
     for(const auto& r : result.best.reasons) {
         cout << "  * " << r << "\n";
     }
     cout << "-------------------------------------------------------------------------------\n";
 
-    cout << "\n[IMPLEMENTATION TEMPLATE]\n";
+    cout << "\nIMPLEMENTATION TEMPLATE\n";
     cout << "-------------------------------------------------------------------------------\n";
 
     if(result.best.name == "DIJKSTRA") {
@@ -790,7 +871,7 @@ bool canWin(vector<int>& piles) {
 // - Graph algorithms for network problems
 )";
     }
-
+    cout << "Confidence      : " << result.confidence << "%\n";
     cout << "-------------------------------------------------------------------------------\n";
     cout << "\n";
 }

@@ -83,3 +83,75 @@ Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
 Recommended: DP_LIS
 Score: 43
 ========================================
+========================================
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
+Recommended: DP_LIS
+Score: 43
+========================================
+========================================
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
+Recommended: DP_LIS
+Score: 43
+========================================
+========================================
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
+Recommended: DP_LIS
+Score: 43
+========================================
+========================================
+Problem: Find the length of the longest increasing subsequence of an array of integers
+Constraints: 1 <= N <= 100000, array values between -1e9 and 1e9
+Recommended: DP_LIS
+Score: 43
+========================================
+========================================
+Problem: Generate all permutations of array
+Constraints: n <= 10
+Recommended: BACKTRACKING
+Score: 58
+========================================
+========================================
+Problem: Generate all permutations of array
+Constraints: n <= 10
+Recommended: BACKTRACKING
+Score: 58
+========================================
+========================================
+Problem: Generate all permutations of array
+Constraints: n <= 100000
+Recommended: PERMUTATIONS
+Score: 4
+========================================
+========================================
+Problem: Generate all permutations of array
+Constraints: n <= 100000
+Recommended: TWO_POINTER
+Score: 2
+========================================
+========================================
+Problem: Generate all permutations of array
+Constraints: n <= 100000
+Recommended: UNKNOWN
+Score: 0
+========================================
+========================================
+Problem: Find maximum subarray sum
+Constraints: n <= 100000
+Recommended: KADANE
+Score: 46
+========================================
+========================================
+Problem: Find shortest path in graph with negative weights
+Constraints: n <= 2000
+Recommended: BELLMAN_FORD
+Score: 42
+========================================
+========================================
+Problem: Find shortest path between all pairs of nodes
+Constraints: n <= 2000
+Recommended: DIJKSTRA
+Score: 25
+========================================
